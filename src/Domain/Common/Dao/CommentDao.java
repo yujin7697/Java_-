@@ -49,8 +49,9 @@ public class CommentDao {
 	}
 //	댓글 작성 
 	public int insert(CommentDto dto) throws Exception{
-		pstmt = conn.prepareStatement("insert into tbl_comment values(?)");
-		pstmt.setString(1, dto.getComment());
+		pstmt = conn.prepareStatement("insert into tbl_comment values(?,?,now())");
+		pstmt.setString(1, dto.getId());
+		pstmt.setString(2, dto.getComment());
 		
 		return pstmt.executeUpdate();
 	}
